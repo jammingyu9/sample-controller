@@ -35,12 +35,12 @@ type CustomDeployment struct {
 // CustomDeploymentSpec is the spec for a CustomDeployment resource
 type CustomDeploymentSpec struct {
 	DeploymentName string `json:"deploymentName"`
-	Replicas       *int32 `json:"replicas"`
+	Freeze         bool `json:"freeze"`
 }
 
 // CustomDeploymentStatus is the status for a CustomDeployment resource
 type CustomDeploymentStatus struct {
-	AvailableReplicas int32 `json:"availableReplicas"`
+	IsFrozen int32 `json:"isFrozen"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
