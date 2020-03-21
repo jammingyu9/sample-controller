@@ -18,6 +18,7 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+    corev1 "k8s.io/api/core/v1"
 )
 
 // +genclient
@@ -34,13 +35,21 @@ type CustomDeployment struct {
 
 // CustomDeploymentSpec is the spec for a CustomDeployment resource
 type CustomDeploymentSpec struct {
-	DeploymentName string `json:"deploymentName"`
-	Freeze         bool `json:"freeze"`
+    PodName string `json:"podName"`
+    Labels map[string]string `json:"labels"`
+    Containers []CustomDeploymentContainers `json:"containers"`
+//	DeploymentName string `json:"deploymentName"`
+//	Freeze         bool `json:"freeze"`
+}
+
+type CustomDeploymentContainers struct {
+    Name string `json:"name"`
+    Image string `json:"image"`
+    Ports []corev1.ContainerPort `json:"ports"`
 }
 
 // CustomDeploymentStatus is the status for a CustomDeployment resource
 type CustomDeploymentStatus struct {
-	IsFrozen int32 `json:"isFrozen"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

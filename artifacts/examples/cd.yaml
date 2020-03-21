@@ -1,0 +1,14 @@
+apiVersion: samplecontroller.k8s.io/v1alpha1
+kind: CustomDeployment
+metadata:
+  name: sample-deployment
+spec:
+  podName: sample-pod
+  labels:
+    app: nginx
+  containers:
+  - name: sample-container
+    image: nginx
+    ports:
+    - containerPort: 80
+
